@@ -3,8 +3,10 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import contactsRoute from './routes/contactsRoute.js';
 import usersRoute from './routes/usersRoute.js';
+import dotenv from 'dotenv';
+import authRoute from './routes/authRoute.js';
 
-
+dotenv.config();
 const app = express();
 
 const PORT = 3000;
@@ -30,7 +32,7 @@ mongoose.connection.once('open', () => {
 
 });
 
-
+app.use('/api/auth', authRoute);
 app.use('/api/contacts', contactsRoute);
 app.use('/api/users', usersRoute)
 
